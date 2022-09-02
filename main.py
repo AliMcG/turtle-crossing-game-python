@@ -4,6 +4,7 @@ from player import Player
 from car_manager import CarManager
 from scoreboard import Scoreboard
 
+speed = 0.1
 # Defines the game screen size and setup
 screen = Screen()
 screen.setup(width=600, height=600)
@@ -20,7 +21,7 @@ screen.onkey(player.go_up, "Up")
 # A continues while loop to let the game run and run until "Game over"
 game_is_on = True
 while game_is_on:
-    time.sleep(0.1)
+    time.sleep(speed)
     screen.update()
 
     car_manager.create_car()
@@ -30,8 +31,9 @@ while game_is_on:
         if car.distance(player) < 20:
             game_is_on = False
 
-    if player.ycor() > 280:
+    if player.ycor() > 275:
         player.respawn()
+        speed -= 0.01
 
 # To exit game screen
 screen.exitonclick()
